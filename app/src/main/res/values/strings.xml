@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">MDC</string>
+    <string name="loginStr">Login</string>
+    <string name="resetpwdStr">Reset Pwd</string>
+    <string name="entPwd">Enter Password</string>
+    <string name="action_settings">Settings</string>
+    <string name="price">Price Calculator</string>
+    <string name="Code">Code Decode</string>
+    <string name="logout">Logout</string>
+    <string name="mdc"></string>
+    <string name="pText">Purchase Cost</string>
+    <string name="expenseStr">Expenses</string>
+    <string name="percentageStr">Percentage</string>
+    <string name="saveStr">Save</string>
+    <string name="saveSettings">Save</string>
+    <string name="preference_file_key">com.mdc.mdc.Preference_file_key</string>
+
+    <string-array name="pwdHintQuestions_array">
+        <item>Your first bike</item>
+        <item>Your favorite dish</item>
+        <item>Your first crush</item>
+    </string-array>
+
+
+</resources>

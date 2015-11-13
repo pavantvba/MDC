@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:id="@+id/relativeLayout">
+
+<!--
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mahadeva Clothing"
+        android:id="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textAlignment="center"
+        android:textColor="#ffff1974"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp" />
+    -->
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tableRow0"
+        android:layout_marginLeft="10dp"
+        android:weightSum="1">
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/businessEdit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textAlignment="center"
+        android:ems="8"
+        android:textColor="#ffff1974"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        android:hint="Business Name"
+        android:inputType="textCapSentences" />
+
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tableRow0"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tableRow1"
+        android:layout_marginLeft="10dp"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/enterNewPwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff110dff"
+            android:inputType="numberPassword"
+            android:hint="Enter Pwd"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/reentNewPwd"
+            android:textColor="#ff090eff"
+            android:hint="Re-enter Pwd"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableRow2"
+        android:layout_below="@+id/tableRow1">
+
+
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableRow3"
+        android:layout_marginTop="10dp">
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pwdHintQuestion"
+            android:touchscreenBlocksFocus="false"
+            android:spinnerMode="dropdown"
+            android:layout_marginLeft="10dp"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/abc_spinner_mtrl_am_alpha"
+            android:layout_marginRight="10dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableRow4">
+
+        <EditText
+            android:id="@+id/pwdHintAns"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ff110dff"
+            android:inputType="text"
+            android:hint="Password Recovery Answer"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="bottom|left" />
+
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tableRow5" >
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/expenseNumber"
+            android:textColor="@color/blue"
+            android:gravity="center"
+            android:hint="Expense Percentage"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:editable="false"
+            android:layout_gravity="center" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/percentageNumber"
+            android:textColor="@color/blue"
+            android:gravity="center"
+            android:hint="Sales Percentage"
+            android:inputType="number"
+            android:layout_marginLeft="15dp"
+            android:editable="true"
+            android:layout_gravity="center" />
+
+
+    </TableRow>
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableRow6" >
+
+        <TextView
+            android:id="@+id/zeroText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="@color/blue"
+            android:text="Enter your code string"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableRow7"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:id="@+id/zeroText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textColor="@color/blue"
+            android:text="0"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/oneText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="20dp"
+            android:text="1"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/twoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="20dp"
+            android:text="2"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/threeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="20dp"
+            android:text="3"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/fourText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="20dp"
+            android:text="4"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/fiveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="20dp"
+            android:text="5"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/sixText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="20dp"
+            android:text="6"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/sevenText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="20dp"
+            android:text="7"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/eighText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="20dp"
+            android:text="8"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center" />
+        <TextView
+            android:id="@+id/nineText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="20dp"
+            android:text="9"
+            android:layout_gravity="center" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableRow7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableRow8"
+        android:layout_alignParentEnd="true">
+
+        <EditText
+            android:id="@+id/zeroNum"
+            android:ems="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:maxEms="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:inputType="textCapCharacters"
+            android:singleLine="false"
+            android:background="#ffcdceff" />
+        <EditText
+            android:id="@+id/oneNum"
+            android:ems="1"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ffcdceff"
+            android:inputType="textCapCharacters" />
+        <EditText
+            android:id="@+id/twoNum"
+            android:ems="1"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ffcdceff"
+            android:inputType="textCapCharacters" />
+        <EditText
+            android:id="@+id/threeNum"
+            android:ems="1"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ffcdceff"
+            android:inputType="textCapCharacters" />
+        <EditText
+            android:id="@+id/fourNum"
+            android:ems="1"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ffcdceff"
+            android:inputType="textCapCharacters" />
+        <EditText
+            android:id="@+id/fiveNum"
+            android:ems="1"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ffcdceff"
+            android:inputType="textCapCharacters" />
+        <EditText
+            android:id="@+id/sixNum"
+            android:ems="1"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ffcdceff"
+            android:inputType="textCapCharacters" />
+        <EditText
+            android:id="@+id/sevenNum"
+            android:ems="1"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ffcdceff"
+            android:inputType="textCapCharacters" />
+        <EditText
+            android:id="@+id/eightNum"
+            android:ems="1"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ffcdceff"
+            android:inputType="textCapCharacters" />
+        <EditText
+            android:id="@+id/nineNum"
+            android:ems="1"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#ffcdceff"
+            android:inputType="textCapCharacters" />
+
+        </TableRow>
+
+
+<Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/saveSettings"
+        android:id="@+id/saveButton"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="40dp"
+        android:textColor="#ffff0404"
+        android:onClick="savePassword"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/tableRow8" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/buttonCancel"
+        android:layout_alignTop="@+id/saveButton"
+        android:layout_toLeftOf="@+id/saveButton"
+        android:layout_toStartOf="@+id/saveButton"
+        android:layout_marginLeft="20dp" />
+
+
+</RelativeLayout>

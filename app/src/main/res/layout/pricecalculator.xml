@@ -1,0 +1,172 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mdc"
+        android:textSize="25dp"
+        android:textColor="@color/red"
+        android:id="@+id/mdcText" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:id="@+id/logout"
+        android:onClick="closeApp"
+        android:layout_toRightOf="@id/mdcText"
+        android:layout_alignParentRight="true"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logout"
+        android:id="@+id/rGroup"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp">
+
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/price"
+            android:id="@+id/priceRadio"
+            android:checked="true"
+            android:textColor="@color/blue"
+            android:onClick="changeInputType"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Code"
+            android:id="@+id/codeRadio"
+            android:textColor="@color/blue"
+            android:onClick="changeInputType"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pText"
+        android:layout_below="@id/rGroup"
+        android:textSize="15dp"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/blue"
+        android:id="@+id/priceCalText"
+        android:layout_marginRight="5dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:id="@+id/price"
+        android:textColor="@color/blue"
+        android:layout_below="@+id/rGroup"
+        android:layout_toRightOf="@id/priceCalText"
+        android:ems="6"
+        android:layout_marginTop="40dp"
+        android:enabled="true"
+        android:gravity="center"
+        android:background="@android:drawable/edit_text" />
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate"
+        android:id="@+id/caliculate"
+        android:onClick="generateCode"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/price"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price Info..."
+        android:textSize="15dp"
+        android:id="@+id/finalPrice"
+        android:textColor="@color/red"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/caliculate"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/expenseStr"
+        android:id="@+id/expensesText"
+        android:layout_alignTop="@+id/rGroup"
+        android:layout_toRightOf="@+id/rGroup"
+        android:layout_toEndOf="@+id/rGroup"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/blue" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/percentageStr"
+        android:id="@+id/percentageText"
+        android:layout_alignBottom="@+id/rGroup"
+        android:layout_toRightOf="@+id/rGroup"
+        android:layout_toEndOf="@+id/rGroup"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/blue" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/expenseNumber"
+        android:layout_alignTop="@+id/rGroup"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@id/expensesText"
+        android:textColor="@color/blue"
+        android:layout_marginTop="-10dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:text="0" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/percentageNumber"
+        android:layout_alignTop="@+id/rGroup"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@id/percentageText"
+        android:textColor="@color/blue"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:text="0" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/saveStr"
+        android:id="@+id/saveBox"
+        android:layout_below="@+id/percentageNumber"
+        android:layout_alignRight="@+id/percentageNumber"
+        android:layout_alignEnd="@+id/percentageNumber"
+        android:checked="false"
+        android:onClick="savePercentageData"
+        android:layout_marginRight="40dp" />
+
+</RelativeLayout>
