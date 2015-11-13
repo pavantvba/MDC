@@ -70,15 +70,16 @@
         android:textColor="@color/blue"
         android:layout_below="@+id/rGroup"
         android:layout_toRightOf="@id/priceCalText"
-        android:ems="6"
+        android:ems="5"
         android:layout_marginTop="40dp"
         android:enabled="true"
         android:gravity="center"
-        android:background="@android:drawable/edit_text" />
+        android:background="@android:drawable/edit_text"
+        style="@android:style/TextAppearance.Widget.EditText" />
 
 
     <Button
-        style="?android:attr/buttonStyleSmall"
+        style="@android:style/Widget.DeviceDefault.Button.Inset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Calculate"
@@ -86,7 +87,7 @@
         android:onClick="generateCode"
         android:layout_alignParentRight="true"
         android:layout_toRightOf="@+id/price"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="165dp"
         android:layout_marginLeft="10dp" />
 
     <TextView
