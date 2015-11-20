@@ -198,8 +198,10 @@ public class PriceCalculator extends Activity {
 
     }
 
-    public void closeApp(){
-        System.exit(0);
+    public void closeApp(View view){
+
+        finish();
+
     }
 
 
