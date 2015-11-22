@@ -89,7 +89,7 @@ public class SaveData extends SQLiteOpenHelper{
 
     public ContentValues fetchData(String key, String value){
 
-        String[] colNames = {"ColumnId", "BussinessName", "Password", "CodeString", "ExpensePercentage", "SellingPercentage", "Pwdhintanswer"};
+        String[] colNames = {"ColumnId", "BussinessName", "Password", "CodeString", "ExpensePercentage", "SellingPercentage", "PwdhintQuestion", "Pwdhintanswer"};
         Cursor dbCursor;
         if (value.equalsIgnoreCase("All")) {
             Log.d(CLASSNAME,"FetchData : Control in All condition " );

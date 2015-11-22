@@ -3,7 +3,6 @@ package com.mdc.mdc;
 //import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +14,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.EditText;
 import android.content.Intent;
-import android.database.Cursor;
 
-import java.net.ContentHandler;
 import java.util.List;
 import java.util.ArrayList;
 import android.widget.AdapterView;
@@ -37,6 +33,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
     Spinner bussinessSpinner;
     String CLASSNAME = this.getClass().getName();
     TextView mdcTextView;
+    //ForgotPwd forgotPwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,18 +50,19 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
 
         if (!checkBussinessRecordExisting()){
             Intent setPwdIntent = new Intent(this,SetPassword.class);
-            //startActivity(setPwdIntent);
             startActivityForResult(setPwdIntent, requestCode);
-            //setContentView(R.layout.setpwd_layout);
         }
 
         setContentView(R.layout.activity_main);
-        bussinessSpinner = (Spinner)findViewById(R.id.businessSpinner);
+        bussinessSpinner = (Spinner)findViewById(R.id.spinnerBusinessNames);
         populateBussinessSpinner();
         mdcTextView = (TextView)findViewById(R.id.mdcText);
-        /* else {
-            setContentView(R.layout.activity_main);
-        }*/
+    }
+
+    public void addBusiness(View view){
+
+        Intent setPwdIntent = new Intent(this,SetPassword.class);
+        startActivityForResult(setPwdIntent, requestCode);
     }
 
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id){
@@ -104,21 +102,6 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         }
 
         return check;
-
-         /* selectedBusinessName =  bussinessSpinner.getSelectedItem().toString();
-
-        String storedPwd = (saveData.fetchData("Password", selectedBusinessName)).get("Password").toString();
-        Log.d("checkPwdExisting", "Selected Business Name " +  selectedBusinessName + "  Password : " + storedPwd);
-
-
-
-        if(storedPwd.length() == 0)
-            check = false;
-
-        Log.d("checkPwdExisting:::","" + check);
-        return check;
-        */
-
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -145,19 +128,23 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         EditText pwd = (EditText) findViewById(R.id.pwdText);
 
         String enteredPwd = pwd.getText().toString();
-        String dbPwd = (saveData.fetchData("Password", selectedBusinessName)).get("Password").toString();
+        if(enteredPwd.length() > 0 ) {
+            String dbPwd = (saveData.fetchData("Password", selectedBusinessName)).get("Password").toString();
 
-        if(enteredPwd.equalsIgnoreCase(dbPwd)){
-            //Toast.makeText(this,pwd.getText(),Toast.LENGTH_SHORT).show();
-            Log.d("MainActivity", "Before Creating Intent");
-            Intent intent = new Intent(this,PriceCalculator.class);
+            if (enteredPwd.equalsIgnoreCase(dbPwd)) {
+                //Toast.makeText(this,pwd.getText(),Toast.LENGTH_SHORT).show();
+                Log.d("MainActivity", "Before Creating Intent");
+                Intent intent = new Intent(this, PriceCalculator.class);
 
-            //intent.putExtra("SaveData", saveData);
-            Log.d("MainActivity", "Intent created");
-            startActivityForResult(intent, requestCode);
-            Log.d("MainActivity", "Intent started");
-        } else {
-            Toast.makeText(this,"Please enter the correct password",Toast.LENGTH_SHORT).show();
+                //intent.putExtra("SaveData", saveData);
+                Log.d("MainActivity", "Intent created");
+                startActivityForResult(intent, requestCode);
+                Log.d("MainActivity", "Intent started");
+            } else {
+                Toast.makeText(this, "Please enter the correct password", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(this,"Please enter the password", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -168,7 +155,12 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+    public void forgotPassword(View view){
 
+        Intent forgotPwdIntent = new Intent(this,ForgotPwd.class);
+        startActivityForResult(forgotPwdIntent, requestCode);
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

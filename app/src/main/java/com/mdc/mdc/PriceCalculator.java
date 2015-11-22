@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.Arrays;
 import java.util.ArrayList;
 
@@ -23,7 +25,8 @@ import java.util.ArrayList;
  */
 public class PriceCalculator extends Activity {
 
-    ArrayList<String> codeList = new ArrayList<String>(Arrays.asList("U","M","H","D","V","C","A","E","I","O"));
+    //ArrayList<String> codeList = new ArrayList<String>(Arrays.asList("U","M","H","D","V","C","A","E","I","O"));
+    ArrayList<String> codeList = new ArrayList<String>();
     CheckBox saveCheckBox;
     TextView finalPriceTextView;
     RadioButton codeRadioButton;
@@ -32,6 +35,8 @@ public class PriceCalculator extends Activity {
     EditText percentageText;
     SaveData saveData;
     TextView mdcTextView;
+    TextView priceCalText;
+    String CLASSNAME = getClass().getName();
 
 
     @Override
@@ -39,7 +44,7 @@ public class PriceCalculator extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pricecalculator);
         mdcTextView = (TextView) findViewById(R.id.mdcText);
-        mdcTextView.setText( MainActivity.selectedBusinessName);
+        mdcTextView.setText(MainActivity.selectedBusinessName);
         saveCheckBox = (CheckBox)findViewById(R.id.saveBox);
         codeRadioButton = (RadioButton) findViewById(R.id.codeRadio);
         priceText = (EditText) findViewById(R.id.price);
@@ -50,8 +55,10 @@ public class PriceCalculator extends Activity {
         percentageText = (EditText) findViewById(R.id.percentageNumber);
         expenseText = (EditText) findViewById(R.id.expenseNumber);
         priceText = (EditText) findViewById(R.id.price);
+        priceCalText = (TextView) findViewById(R.id.priceCalText);
         saveData = new SaveData(this.getApplicationContext());
         readPercentageData(); // Read and assigning values to text boxes which were stored in file
+        populateCodeArray();
 
         expenseText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -64,7 +71,6 @@ public class PriceCalculator extends Activity {
 
                 if (saveCheckBox.isChecked())
                     saveCheckBox.setChecked(false);
-
             }
 
             @Override
@@ -93,6 +99,15 @@ public class PriceCalculator extends Activity {
 
     public void populateCodeArray(){
 
+        ContentValues contentValues = saveData.fetchData("CodeString", MainActivity.selectedBusinessName);
+        Log.d(CLASSNAME, "CodeString " + contentValues.toString());
+        String codeString = contentValues.get("CodeString").toString();
+        for (int i=0; i < codeString.length(); i++) {
+
+            codeList.add(""+codeString.charAt(i));
+
+        }
+
     }
 
     public void generateCode(View view) {
@@ -103,45 +118,62 @@ public class PriceCalculator extends Activity {
 
         Log.d("Price Calculator", "Entered Data:" + purchagePrice);
 
-        if (codeRadioButton.isChecked()) {
-           // Toast.makeText(this, "Code Radio Button Selected", Toast.LENGTH_SHORT).show();
+        if(purchagePrice.length() > 0) {
 
-            for(int i = 0; i < purchagePrice.length(); i++){
-                String letter = purchagePrice.substring(i, i + 1).toUpperCase();
-                Log.d("OuterLoop ", "Letter : " + letter);
 
-                if (codeList.contains(letter)) {
-                    decodeStringVal = decodeStringVal + "" + codeList.indexOf(letter);
+            if (codeRadioButton.isChecked()) {
+                // Toast.makeText(this, "Code Radio Button Selected", Toast.LENGTH_SHORT).show();
+
+                for (int i = 0; i < purchagePrice.length(); i++) {
+                    String letter = purchagePrice.substring(i, i + 1);
+                    Log.d("OuterLoop ", "Letter : " + letter + " ::: " + codeList.indexOf(letter));
+
+
+                    if (codeList.indexOf(letter) != -1) {
+                        decodeStringVal = decodeStringVal + "" + codeList.indexOf(letter);
+                    }
                 }
-            }
 
-            if(decodeStringVal.length() > 0) {
-                finalPriceTextView.setText("Cost : " + decodeStringVal);
+                if (decodeStringVal.length() > 0) {
+                    finalPriceTextView.setText("Cost : " + decodeStringVal);
+                } else {
+                    finalPriceTextView.setText("Sorry! Please enter the correct code.");
+                }
+
             } else {
-                finalPriceTextView.setText("Sorry! Please enter the correct code.");
+
+                int purchageNumber = new Integer(purchagePrice).intValue();
+
+                //long purchagePrice_TenPercentage = Math.round(purchageNumber + (purchageNumber * 0.1));
+
+                long purchagePrice_TenPercentage = Math.round(purchageNumber + (purchageNumber * ((new Float(expenseText.getText().toString()).floatValue()) / 100)));
+
+                Log.d(CLASSNAME, "Purchage Cost : " + purchageNumber + ":::" + (new Float(expenseText.getText().toString()).floatValue()) / 100);
+
+                String purchagePrice_TenPercentage_str = new Long(purchagePrice_TenPercentage).toString();
+
+                String purchageCode = "";
+                for (int i = 0; i < purchagePrice_TenPercentage_str.length(); i++) {
+                    int indexVal = new Integer(purchagePrice_TenPercentage_str.substring(i, i + 1)).intValue();
+                    Log.d("Price Calculator :", "" + indexVal);
+                    purchageCode = purchageCode + codeList.get(indexVal);
+                }
+
+                //long sellingPrice = Math.round(purchagePrice_TenPercentage + (purchagePrice_TenPercentage * 0.7));
+                Log.d(CLASSNAME, "Selling Cost : " + purchagePrice_TenPercentage + ":::" + (new Float(percentageText.getText().toString()).floatValue()) / 100);
+
+                long sellingPrice = Math.round(purchagePrice_TenPercentage + (purchagePrice_TenPercentage * (new Float(percentageText.getText().toString()).floatValue() / 100)));
+
+
+                String displayString = "Price Info \n\n Purchase Price: " + purchageNumber + "\n\n Actual Cost (" + expenseText.getText() + "%):" + purchagePrice_TenPercentage +
+                        "\n\n Selling Price (" + percentageText.getText() + "%):" + sellingPrice + "\n\n CodeString:" + purchageCode;
+
+
+                finalPriceTextView.setText(displayString);
             }
-
-        } else {
-
-            int purchageNumber = new Integer(purchagePrice).intValue();
-
-            long purchagePrice_TenPercentage = Math.round(purchageNumber + (purchageNumber * 0.1));
-            String purchagePrice_TenPercentage_str = new Long(purchagePrice_TenPercentage).toString();
-
-            String purchageCode = "";
-            for (int i = 0; i < purchagePrice_TenPercentage_str.length(); i++) {
-                int indexVal = new Integer(purchagePrice_TenPercentage_str.substring(i, i + 1)).intValue();
-                Log.d("Price Calculator :", "" + indexVal);
-                purchageCode = purchageCode + codeList.get(indexVal);
-            }
-
-            long sellingPrice = Math.round(purchagePrice_TenPercentage + (purchagePrice_TenPercentage * 0.7));
-
-            String displayString = "Price Info \n\n Purchase Price: " + purchageNumber + "\n\n Actual Cost (10%):" + purchagePrice_TenPercentage +
-                    "\n\n Selling Price (70%):" + sellingPrice + "\n\n CodeString:" + purchageCode;
-
-
-            finalPriceTextView.setText(displayString);
+        } else
+        {
+            Toast.makeText(this, "Please enter purchase cost ", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -152,8 +184,9 @@ public class PriceCalculator extends Activity {
 
         if (codeRadioButton.isChecked()) {
             priceText.setText("");
-            priceText.setInputType(InputType.TYPE_CLASS_TEXT);
-            priceText.setAllCaps(true);
+            priceText.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+            priceCalText.setText("Code String");
+            //priceText.setAllCaps(true);
             expenseText.setEnabled(false);
             percentageText.setEnabled(false);
             saveCheckBox.setEnabled(false);
@@ -161,6 +194,7 @@ public class PriceCalculator extends Activity {
         } else {
             priceText.setText("");
             priceText.setInputType(InputType.TYPE_CLASS_NUMBER);
+            priceCalText.setText("Purchase Cost");
             expenseText.setEnabled(true);
             percentageText.setEnabled(true);
             saveCheckBox.setEnabled(true);

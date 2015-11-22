@@ -17,6 +17,7 @@ public class SetPassword extends Activity {
 
     Spinner spinner;
     SaveData saveData;
+    String CLASSNAME = this.getClass().getName();
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         saveData = new SaveData(this.getApplicationContext());
@@ -106,8 +107,10 @@ public class SetPassword extends Activity {
         }
     }
 
-    public void closeAction(){
-        finishActivity(200);
+    public void closeAction(View view){
+        Log.d(CLASSNAME, "CloseAction");
+        //finishActivity(200);
+        finish();
 
     }
 

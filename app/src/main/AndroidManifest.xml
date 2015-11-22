@@ -25,6 +25,10 @@
             android:label="SetPassword"
             android:name=".SetPassword">
         </activity>
+        <activity
+            android:label="ForgotPwd"
+            android:name=".ForgotPwd">
+        </activity>
     </application>
 
 </manifest>
